@@ -5,7 +5,7 @@
     <classes>
       <class name="testscript.NewsTest">
         <methods>
-          <include name="AddNews"/>
+          <include name="reset"/>
           <include name="closeBrowser"/>
           <include name="initializeBrowser"/>
         </methods>
