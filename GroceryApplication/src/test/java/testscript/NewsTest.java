@@ -53,11 +53,29 @@ public class NewsTest extends TestNGBase {
 		typenews.sendKeys("today");
 		WebElement searchnews = driver.findElement(By.xpath("//button[@class='btn btn-danger btn-fix']"));
 		searchnews.click();		
-		 WebElement returnhome = driver.findElement(By.xpath("https://groceryapp.uniqassosiates.com/admin/home"));
-		 returnhome.click();
 		}
 	 
-	 @Test
+	 @Test (priority =3, description ="Verify return to Homepage")
+	 
+	 public void returnhome() throws IOException {
+		 String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
+		 String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
+			//Login to Grocery Application
+			WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+			username.sendKeys(usernamevalue);
+			WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
+			password.sendKeys(passwordvalue);
+			WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
+			signin.click();	
+			//Click Manage News
+			WebElement managenews = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']"));
+			managenews.click();
+			WebElement returnhome = driver.findElement(By.xpath("https://groceryapp.uniqassosiates.com/admin/home"));
+			returnhome.click();
+		 
+	 }
+	 
+	 @Test (priority=4, description="Verify reset")
 	 
 	 public void reset() throws IOException {
 		 String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
@@ -72,7 +90,7 @@ public class NewsTest extends TestNGBase {
 			//Click Manage News
 			WebElement managenews = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']"));
 			managenews.click();
-			//Add news
+			/*//Add news
 			WebElement addnews = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/news/add']"));
 			addnews.click();
 			WebElement addnewstext = driver.findElement(By.xpath("//textarea[@id='news']"));
@@ -80,7 +98,7 @@ public class NewsTest extends TestNGBase {
 			WebElement savenews = driver.findElement(By.xpath("//button[@type='submit']"));
 			savenews.click();
 			WebElement search = driver.findElement(By.xpath("////a[@class='btn btn-rounded btn-primary']"));
-			search.click();
+			search.click();*/
 			WebElement typenews = driver.findElement(By.xpath("//input[@class='form-control']"));
 			typenews.sendKeys("explore");
 			WebElement searchnews = driver.findElement(By.xpath("//button[@class='btn btn-danger btn-fix']"));
