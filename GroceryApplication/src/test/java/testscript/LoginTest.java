@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
@@ -20,7 +21,12 @@ public class LoginTest extends TestNGBase{
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
 		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
-		signin.click();		
+		signin.click();	
+		//Hard Assertion
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin";
+		Assert.assertEquals(actual,expected); //softassert. (if soft assertion is used)
+		//if assertion fails, an error 'Assertion failed' will be returned
 	}
 	
 	@Test	(priority = 2, description = "verifying login to the webpage with invalid username and valid password")
