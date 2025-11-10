@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
@@ -31,6 +32,10 @@ public class NewsTest extends TestNGBase {
 		addnewstext.sendKeys("Explore news");
 		WebElement savenews = driver.findElement(By.xpath("//button[@type='submit']"));
 		savenews.click();
+		//Assertion
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin/News/add";
+		Assert.assertEquals(actual, expected);
 		}
 	
 	 @Test (priority = 2, description ="Verify search news")
@@ -53,6 +58,10 @@ public class NewsTest extends TestNGBase {
 		typenews.sendKeys("today");
 		WebElement searchnews = driver.findElement(By.xpath("//button[@class='btn btn-danger btn-fix']"));
 		searchnews.click();		
+		//Assertion
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin/list-news";
+		Assert.assertEquals(actual, expected);
 		}
 	 
 	 @Test (priority =3, description ="Verify return to Homepage")
@@ -70,10 +79,13 @@ public class NewsTest extends TestNGBase {
 			//Click Manage News
 			WebElement managenews = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']"));
 			managenews.click();
-			WebElement returnhome = driver.findElement(By.xpath("https://groceryapp.uniqassosiates.com/admin/home"));
+			WebElement returnhome = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/home']"));
 			returnhome.click();
-		 
-	 }
+			//Assertion
+			String actual = driver.getCurrentUrl();
+			String expected = "https://groceryapp.uniqassosiates.com/admin/home";
+			Assert.assertEquals(actual, expected);
+		 }
 	 
 	 @Test (priority=4, description="Verify reset")
 	 
@@ -106,6 +118,10 @@ public class NewsTest extends TestNGBase {
 			//reset 
 			WebElement reset = driver.findElement(By.xpath("//i[@class='ace-icon fa fa-sync-alt']"));
 			reset.click();
+			//Assertion Error
+			String actual = driver.getCurrentUrl();
+			String expected = "https://groceryapp.uniqassosiates.com/admin/list-news";
+			Assert.assertEquals(actual, expected);
 			}
 			
 		 

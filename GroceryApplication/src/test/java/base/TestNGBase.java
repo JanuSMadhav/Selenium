@@ -26,7 +26,7 @@ public class TestNGBase {
 	@AfterMethod
 	public void closeBrowser() {
 		//driver.close(); //closing the tab
-		driver.quit();//closing the window
+		//driver.quit();//closing the window
 	}
 	
 	

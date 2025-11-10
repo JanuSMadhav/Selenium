@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginTest extends TestNGBase{
@@ -16,12 +17,16 @@ public class LoginTest extends TestNGBase{
 	public void verifyLoginWithValidCredentials() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernamevalue);
+		loginpage.enterPassword(passwordvalue);
+		loginpage.signin();
+		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
 		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
-		signin.click();	
+		signin.click();	*/
 		//Hard Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin";
@@ -34,12 +39,20 @@ public class LoginTest extends TestNGBase{
 	public void verifyLoginWithInvalidUsernameAndValidPassword() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(2, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(2, 1, "LoginSheet");
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernamevalue);
+		loginpage.enterPassword(passwordvalue);
+		loginpage.signin();
+		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
 		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
-		signin.click();		
+		signin.click();	*/
+		//Assertion
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
+		Assert.assertEquals(actual, expected);
 	}
 	
 	@Test (priority = 3, description = "verifying login to the webpage with valid username and invalid password")
@@ -47,24 +60,40 @@ public class LoginTest extends TestNGBase{
 	public void verifyLoginWithValidUsernameAndInvalidPassword() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(3, 0, "LoginSheet");
 		String passwordvalue = ExcelUtility.getStringData(3, 1, "LoginSheet");
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernamevalue);
+		loginpage.enterPassword(passwordvalue);
+		loginpage.signin();
+		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
 		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
-		signin.click();	
+		signin.click();	*/
+		//Assertion
+				String actual = driver.getCurrentUrl();
+				String expected = "https://groceryapp.uniqassosiates.com/admin/login";
+				Assert.assertEquals(actual, expected);
 }
 
 	@Test (priority = 4, description = "verifying login to the webpage with invalid username and invalid password")
 	public void verifyLoginWithInvalidUsernameAndInvalidPassword() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(4, 0, "LoginSheet");
 		String passwordvalue = ExcelUtility.getStringData(4, 1, "LoginSheet");
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernamevalue);
+		loginpage.enterPassword(passwordvalue);
+		loginpage.signin();
+		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
 		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
-		signin.click();	
+		signin.click();	*/
+		//Assertion-- user name and password added in the excel file (scenario 4) are valid. check this case
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
+		Assert.assertEquals(actual, expected);
 	}
 	
 }

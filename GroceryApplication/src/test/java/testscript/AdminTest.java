@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
@@ -42,6 +43,10 @@ public class AdminTest extends TestNGBase{
 		select.selectByVisibleText("Staff");
 		WebElement savebutton = driver.findElement(By.xpath("//button[@type='submit' and @name='Create']"));
 		savebutton.click();
-		System.out.println(newusername);		
+		System.out.println(newusername);	
+		//Assertion
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin/list-admin?add=1";
+		Assert.assertEquals(actual, expected);
 	}
 }

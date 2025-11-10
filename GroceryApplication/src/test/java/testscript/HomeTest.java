@@ -4,9 +4,12 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import pages.HomePage;
+import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNGBase {
@@ -16,18 +19,31 @@ public class HomeTest extends TestNGBase {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
 		//Login to Grocery Application
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernamevalue);
+		loginpage.enterPassword(passwordvalue);
+		loginpage.signin();
+		
+		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
 		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
-		signin.click();	
+		signin.click();	*/
+		HomePage homepage = new HomePage(driver);
+		homepage.adminButton();
+		homepage.logout();
+		
 		//Click Admin dropdown for logging out
-		WebElement admin = driver.findElement(By.xpath("//a[@data-toggle='dropdown']"));
+		/*WebElement admin = driver.findElement(By.xpath("//a[@data-toggle='dropdown']"));
 		admin.click();
 		//Click Logout button
 		WebElement logout = driver.findElement(By.xpath("//i[@class='ace-icon fa fa-power-off']"));
-		logout.click();	
+		logout.click();	*/
+		//Assertion
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
+		Assert.assertEquals(actual, expected);
 	}	
  
 }
