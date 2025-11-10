@@ -90,7 +90,7 @@ public class LoginTest extends TestNGBase{
 		password.sendKeys(passwordvalue);
 		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
 		signin.click();	*/
-		//Assertion-- user name and password added in the excel file (scenario 4) are valid. check this case
+		//Assertion 
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
 		Assert.assertEquals(actual, expected);
