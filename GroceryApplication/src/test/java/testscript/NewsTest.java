@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import pages.NewsPage;
 import utilities.ExcelUtility;
 
 public class NewsTest extends TestNGBase {
@@ -16,7 +17,16 @@ public class NewsTest extends TestNGBase {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
 		//Login to Grocery Application
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+		NewsPage newspage =new NewsPage(driver);
+		newspage.enterUsername(usernamevalue);
+		newspage.enterPassword(passwordvalue);
+		newspage.signin();
+		newspage.clickManageNews();
+		newspage.clickaddNews();
+		newspage.addNews();
+		newspage.saveNews();
+		
+		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
@@ -31,7 +41,7 @@ public class NewsTest extends TestNGBase {
 		WebElement addnewstext = driver.findElement(By.xpath("//textarea[@id='news']"));
 		addnewstext.sendKeys("Explore news");
 		WebElement savenews = driver.findElement(By.xpath("//button[@type='submit']"));
-		savenews.click();
+		savenews.click();*/
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/News/add";
@@ -43,7 +53,15 @@ public class NewsTest extends TestNGBase {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
 		//Login to Grocery Application
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+		NewsPage newspage =new NewsPage(driver);
+		newspage.enterUsername(usernamevalue);
+		newspage.enterPassword(passwordvalue);
+		newspage.signin();
+		newspage.clickManageNews();
+		newspage.typeNews();
+		newspage.searchNews();
+		
+		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
@@ -57,7 +75,7 @@ public class NewsTest extends TestNGBase {
 		WebElement typenews = driver.findElement(By.xpath("//input[@class='form-control']"));
 		typenews.sendKeys("today");
 		WebElement searchnews = driver.findElement(By.xpath("//button[@class='btn btn-danger btn-fix']"));
-		searchnews.click();		
+		searchnews.click();	*/	
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/list-news";

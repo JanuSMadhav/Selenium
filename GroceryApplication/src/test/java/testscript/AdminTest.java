@@ -9,6 +9,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import pages.AdminPage;
+import pages.LoginPage;
 import utilities.ExcelUtility;
 import utilities.FakerUtility;
 
@@ -20,7 +22,19 @@ public class AdminTest extends TestNGBase{
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
 		//Login to Grocery Application
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernamevalue);
+		loginpage.enterPassword(passwordvalue);
+		loginpage.signin();
+		AdminPage adminpage = new AdminPage(driver);
+		adminpage.clickAdminUser();
+		adminpage.clickNewButton();
+		adminpage.addNewAdmin(usernamevalue);
+		adminpage.addPassword(passwordvalue);
+		adminpage.selectUsertype();
+		adminpage.saveUser();
+		
+		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
@@ -43,7 +57,7 @@ public class AdminTest extends TestNGBase{
 		select.selectByVisibleText("Staff");
 		WebElement savebutton = driver.findElement(By.xpath("//button[@type='submit' and @name='Create']"));
 		savebutton.click();
-		System.out.println(newusername);	
+		System.out.println(newusername);*/	
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/list-admin?add=1";

@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import constants.Constant;
+
 
 public class ExcelUtility {
 		static FileInputStream f; //excel file
@@ -20,7 +22,8 @@ public class ExcelUtility {
 
 		{
 		
-		f=new FileInputStream("C:\\Users\\USER\\git\\Selenium\\GroceryApplication\\src\\test\\resources\\Test Data.xlsx");
+		//f=new FileInputStream("C:\\Users\\USER\\git\\Selenium\\GroceryApplication\\src\\test\\resources\\TestData.xlsx");
+		f = new FileInputStream(Constant.TESTDATAFILE);
 
 		w=new XSSFWorkbook(f);
 
