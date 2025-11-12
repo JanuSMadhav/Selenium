@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import constants.Constant;
+
 public class AdminPage {
 	public WebDriver driver;
 	public AdminPage(WebDriver driver) {
@@ -33,7 +35,7 @@ public class AdminPage {
 	public void selectUsertype() {
 		WebElement usertype = driver.findElement(By.xpath("//select[@class='form-control' and @name='user_type']"));
 		Select select = new Select(usertype);
-		select.selectByVisibleText("Staff");
+		select.selectByVisibleText(Constant.ADMINTYPE);
 	}
 	
 	//save new admin

@@ -26,11 +26,17 @@ public class AdminTest extends TestNGBase{
 		loginpage.enterUserName(usernamevalue);
 		loginpage.enterPassword(passwordvalue);
 		loginpage.signin();
+		
+		//create random user name and password
+		FakerUtility faker = new FakerUtility();
+		String randomusername = faker.createRandomUserName();
+		String randompassword = faker.createRandomPassword();
+		
 		AdminPage adminpage = new AdminPage(driver);
 		adminpage.clickAdminUser();
 		adminpage.clickNewButton();
-		adminpage.addNewAdmin(usernamevalue);
-		adminpage.addPassword(passwordvalue);
+		adminpage.addNewAdmin(randomusername);
+		adminpage.addPassword(randompassword);
 		adminpage.selectUsertype();
 		adminpage.saveUser();
 		
@@ -44,10 +50,9 @@ public class AdminTest extends TestNGBase{
 		WebElement adminuser = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin' and @class='small-box-footer']"));
 		adminuser.click();
 		WebElement clicknewbutton = driver.findElement(By.xpath("//a[@class='btn btn-rounded btn-danger']"));
-		clicknewbutton.click();	
-		FakerUtility faker = new FakerUtility();
-		String randomusername = faker.createRandomUserName();
-		String randompassword = faker.createRandomPassword();
+		clicknewbutton.click();	*/
+		
+		/*
 		WebElement newusername = driver.findElement(By.xpath("//input[@type='text' and @id='username']"));
 		newusername.sendKeys(randomusername);
 		WebElement newpassword = driver.findElement(By.xpath("//input[@type='password' and @id='password']"));
