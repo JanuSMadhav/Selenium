@@ -23,8 +23,9 @@ public class LoginPage {
 		//WebElement password = driver.findElement(By.xpath("//input	[@name='password']"));
 		password.sendKeys(passwordvalue);		
 	}
+	@FindBy(xpath="//button[@type='submit']") WebElement signin;
 	public void signin() {
-		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
+	//WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
 		signin.click();	
 	}
 }
