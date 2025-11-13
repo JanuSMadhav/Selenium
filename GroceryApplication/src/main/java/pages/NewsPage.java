@@ -1,16 +1,22 @@
 package pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.WaitUtility;
+
 public class NewsPage {
 	public WebDriver driver;
+	WaitUtility waitutility = new WaitUtility();
 	public NewsPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}	
 		//Login to Grocery Application
 	@FindBy(xpath="//input[@name='username']") WebElement username;
@@ -26,6 +32,7 @@ public class NewsPage {
 	@FindBy(xpath="//button[@type='submit']") WebElement signin;
 		public void signin() {
 	//	WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
+		waitutility.waitUntilClickable(driver, signin);
 		signin.click();	
 		}
 		//Click Manage News

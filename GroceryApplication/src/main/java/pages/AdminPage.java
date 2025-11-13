@@ -1,5 +1,7 @@
 package pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,17 +10,21 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import constants.Constant;
+import utilities.WaitUtility;
 
 public class AdminPage {
 	public WebDriver driver;
+	WaitUtility waitutility = new WaitUtility();
 	public AdminPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 	//Click Admin User
 	@FindBy(xpath="//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin' and @class='small-box-footer']") WebElement adminuser;
 	public void clickAdminUser() {
 		//WebElement adminuser = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin' and @class='small-box-footer']"));
+		waitutility.waitUntilClickable(driver, adminuser);
 		adminuser.click();
 	}
 	//click new button
