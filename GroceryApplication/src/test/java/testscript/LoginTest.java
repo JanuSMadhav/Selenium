@@ -14,8 +14,8 @@ import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginTest extends TestNGBase{
-	@Test (priority = 1, description = "verifying login to the webpage with valid username and valid password")
-	
+	@Test (priority = 1, description = "verifying login to the webpage with valid username and valid password", retryAnalyzer= retry.Retry.class)//using retry class
+	//if retry mechanism is used then the test case would be flaky
 	public void verifyLoginWithValidCredentials() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, Constant.LOGINSHEET);//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, Constant.LOGINSHEET);
@@ -32,7 +32,7 @@ public class LoginTest extends TestNGBase{
 		//Hard Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin";
-		Assert.assertEquals(actual,expected); //softassert. (if soft assertion is used)
+		Assert.assertEquals(actual,expected, "Login with valid credentials is failed"); //softassert. (if soft assertion is used)
 		//if assertion fails, an error 'Assertion failed' will be returned
 	}
 	
@@ -54,7 +54,7 @@ public class LoginTest extends TestNGBase{
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-		Assert.assertEquals(actual, expected);
+		Assert.assertEquals(actual, expected, "Login with invalid username and valid password succeeded");
 	}
 	
 	@Test (priority = 3, description = "verifying login to the webpage with valid username and invalid password")
@@ -75,7 +75,7 @@ public class LoginTest extends TestNGBase{
 		//Assertion
 				String actual = driver.getCurrentUrl();
 				String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-				Assert.assertEquals(actual, expected);
+				Assert.assertEquals(actual, expected,"Login with valid username and invalid password succeeded");
 }
 
 	@Test (priority = 4, description = "verifying login to the webpage with invalid username and invalid password", dataProvider = "loginProvider")//data provider is added in the description to access the data. Passing string values as data provider contains string data
@@ -96,7 +96,7 @@ public class LoginTest extends TestNGBase{
 		//Assertion 
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-		Assert.assertEquals(actual, expected);
+		Assert.assertEquals(actual, expected, "Login with invalid credentials succeeded");
 	}
 
 //Data Provider

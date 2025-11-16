@@ -12,7 +12,7 @@ import pages.NewsPage;
 import utilities.ExcelUtility;
 
 public class NewsTest extends TestNGBase {
-	@Test (priority=1, description="Verify adding News")
+	@Test (priority=1, description="Verify adding News", retryAnalyzer= retry.Retry.class)
 	public void AddNews() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
@@ -45,7 +45,7 @@ public class NewsTest extends TestNGBase {
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/News/add";
-		Assert.assertEquals(actual, expected);
+		Assert.assertEquals(actual, expected,"Failed to add news");
 		}
 	
 	 @Test (priority = 2, description ="Verify search news")
@@ -79,7 +79,7 @@ public class NewsTest extends TestNGBase {
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/list-news";
-		Assert.assertEquals(actual, expected);
+		Assert.assertEquals(actual, expected, "Could not search news");
 		}
 	 
 	 @Test (priority =3, description ="Verify return to Homepage")
@@ -102,7 +102,7 @@ public class NewsTest extends TestNGBase {
 			//Assertion
 			String actual = driver.getCurrentUrl();
 			String expected = "https://groceryapp.uniqassosiates.com/admin/home";
-			Assert.assertEquals(actual, expected);
+			Assert.assertEquals(actual, expected, "Could not return to Home page");
 		 }
 	 
 	 @Test (priority=4, description="Verify reset")
@@ -139,7 +139,7 @@ public class NewsTest extends TestNGBase {
 			//Assertion Error
 			String actual = driver.getCurrentUrl();
 			String expected = "https://groceryapp.uniqassosiates.com/admin/list-news";
-			Assert.assertEquals(actual, expected);
+			Assert.assertEquals(actual, expected, "Reset failed");
 			}
 			
 		 

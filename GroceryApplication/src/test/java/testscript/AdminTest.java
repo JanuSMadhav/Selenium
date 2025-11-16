@@ -16,7 +16,7 @@ import utilities.FakerUtility;
 
 public class AdminTest extends TestNGBase{
 	
-	@Test (priority =1, description="Adding new Admin user")
+	@Test (priority =1, description="Adding new Admin user", retryAnalyzer= retry.Retry.class)
 	
 	public void addAdminUser() throws IOException{
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
@@ -66,6 +66,6 @@ public class AdminTest extends TestNGBase{
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/list-admin?add=1";
-		Assert.assertEquals(actual, expected);
+		Assert.assertEquals(actual, expected, "Failed to add admin user");
 	}
 }

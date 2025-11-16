@@ -32,13 +32,14 @@ public class TestNGBase {
 		//driver.close(); //closing the tab
 		//driver.quit();//closing the window
 	}
-	@AfterMethod(alwaysRun = true)
+	@AfterMethod(alwaysRun = true)// a test case can fail for many reasons which may stop the execution. to execute the aftermethod, always=true is used
 	public void driverQuit(ITestResult iTestResult) throws IOException
 	{
-		if(iTestResult.getStatus()==ITestResult.FAILURE)
+		//iTestResult is a predefined interface that contains all the test data related information
+		if(iTestResult.getStatus()==ITestResult.FAILURE) //screenshot utility code will be invoked only when iTestResult fails
 		{
 			ScreenshotUtility screenShot=new ScreenshotUtility();
-			screenShot.getScreenshot(driver, iTestResult.getName());
+			screenShot.getScreenshot(driver, iTestResult.getName());//getName method returns the name of the test method
 		}
 		driver.quit();
 

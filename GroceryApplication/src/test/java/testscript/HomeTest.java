@@ -13,7 +13,7 @@ import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNGBase {
-	@Test (priority = 1, description = "Verify logout after logging in")
+	@Test (priority = 1, description = "Verify logout after logging in", retryAnalyzer= retry.Retry.class)
 	
 	public void verifyLogoutfunctionality() throws IOException  {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
@@ -43,7 +43,7 @@ public class HomeTest extends TestNGBase {
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-		Assert.assertEquals(actual, expected);
+		Assert.assertEquals(actual, expected, "Logout after login failed");
 	}	
  
 }
