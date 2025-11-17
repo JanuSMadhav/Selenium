@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import base.TestNGBase;
 import constants.Constant;
+import constants.Messages;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 
@@ -32,7 +33,7 @@ public class LoginTest extends TestNGBase{
 		//Hard Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin";
-		Assert.assertEquals(actual,expected, "Login with valid credentials is failed"); //softassert. (if soft assertion is used)
+		Assert.assertEquals(actual,expected, Messages.VALID_CREDENTIAL_ASSERT); //softassert. (if soft assertion is used)
 		//if assertion fails, an error 'Assertion failed' will be returned
 	}
 	
