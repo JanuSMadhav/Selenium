@@ -4,7 +4,7 @@
 <listeners>
  <listener class-name="reportGeneration.Listener">
   </listener>
- </listeners>
+ </listeners>// used to generate report when the TestNG suite is executed
   <test thread-count="5" name="Test">
     <classes>
       <class name="testscript.HomeTest"/>
