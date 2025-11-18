@@ -13,8 +13,8 @@ import pages.NewsPage;
 import utilities.ExcelUtility;
 
 public class NewsTest extends TestNGBase {
-	@Test (priority=1, description="Verify adding News", retryAnalyzer= retry.Retry.class)
-	public void AddNews() throws IOException {
+	@Test (priority=1, description="Verify adding News", retryAnalyzer= retry.Retry.class, groups = {"smoke"})
+	public void addNewsItem() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
 		//Login to Grocery Application
