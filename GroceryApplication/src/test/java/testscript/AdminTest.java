@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import constants.Messages;
 import pages.AdminPage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
@@ -66,6 +67,6 @@ public class AdminTest extends TestNGBase{
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/list-admin?add=1";
-		Assert.assertEquals(actual, expected, "Failed to add admin user");
+		Assert.assertEquals(actual, expected, Messages.ADD_NEW_USER_ASSERT);
 	}
 }

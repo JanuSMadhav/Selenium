@@ -55,7 +55,7 @@ public class LoginTest extends TestNGBase{
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-		Assert.assertEquals(actual, expected, "Login with invalid username and valid password succeeded");
+		Assert.assertEquals(actual, expected, Messages.INVALID_USERNAME_ASSERT);
 	}
 	
 	@Test (priority = 3, description = "verifying login to the webpage with valid username and invalid password")
@@ -76,7 +76,7 @@ public class LoginTest extends TestNGBase{
 		//Assertion
 				String actual = driver.getCurrentUrl();
 				String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-				Assert.assertEquals(actual, expected,"Login with valid username and invalid password succeeded");
+				Assert.assertEquals(actual, expected,Messages.INVALID_PASSWORD_ASSERT);
 }
 
 	@Test (priority = 4, description = "verifying login to the webpage with invalid username and invalid password", dataProvider = "loginProvider")//data provider is added in the description to access the data. Passing string values as data provider contains string data
@@ -97,7 +97,7 @@ public class LoginTest extends TestNGBase{
 		//Assertion 
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-		Assert.assertEquals(actual, expected, "Login with invalid credentials succeeded");
+		Assert.assertEquals(actual, expected, Messages.INVALID_CREDENTIAL_ASSERT);
 	}
 
 //Data Provider

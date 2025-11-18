@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import constants.Messages;
 import pages.NewsPage;
 import utilities.ExcelUtility;
 
@@ -45,7 +46,7 @@ public class NewsTest extends TestNGBase {
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/News/add";
-		Assert.assertEquals(actual, expected,"Failed to add news");
+		Assert.assertEquals(actual, expected, Messages.ADD_NEWS_ASSERT);
 		}
 	
 	 @Test (priority = 2, description ="Verify search news")
@@ -79,7 +80,7 @@ public class NewsTest extends TestNGBase {
 		//Assertion
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/list-news";
-		Assert.assertEquals(actual, expected, "Could not search news");
+		Assert.assertEquals(actual, expected, Messages.SEARCH_NEWS_ASSERT);
 		}
 	 
 	 @Test (priority =3, description ="Verify return to Homepage")
@@ -102,7 +103,7 @@ public class NewsTest extends TestNGBase {
 			//Assertion
 			String actual = driver.getCurrentUrl();
 			String expected = "https://groceryapp.uniqassosiates.com/admin/home";
-			Assert.assertEquals(actual, expected, "Could not return to Home page");
+			Assert.assertEquals(actual, expected, Messages.RETURN_HOMEPAGE_ASSERT);
 		 }
 	 
 	 @Test (priority=4, description="Verify reset")
@@ -139,7 +140,7 @@ public class NewsTest extends TestNGBase {
 			//Assertion Error
 			String actual = driver.getCurrentUrl();
 			String expected = "https://groceryapp.uniqassosiates.com/admin/list-news";
-			Assert.assertEquals(actual, expected, "Reset failed");
+			Assert.assertEquals(actual, expected, Messages.RESET_PAGE_ASSERT);
 			}
 			
 		 
