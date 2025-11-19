@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite name="parallel" parallel="methods"> <!--methods is used here. Parallel testing executes the same test case in different browsers at the same time-->
+<listeners>
+ <listener class-name="reportGeneration.Listener">
+  </listener>
+ </listeners> <!--used to generate report when the TestNG suite is executed-->
+ <parameter name="browser" value="chrome"></parameter>
   <test thread-count="5" name="ChromeTest">
-  <parameter name="browser" value="chrome"></parameter><!-->>tag is used to parameterize browser and should be given inside the test tag-->
+  <parameter name="browser" value="chrome"></parameter>
     <classes>
       <class name="testscript.HomeTest"/>
-      <class name="testscript.AdminTest"/>
-      <class name="testscript.NewsTest"/>
       <class name="testscript.LoginTest"/>
-    </classes>
+      </classes>
   </test> <!-- Test -->
   <test thread-count="5" name="FirefoxTest">
   <parameter name="browser" value="firefox"></parameter>
     <classes>
       <class name="testscript.HomeTest"/>
-      <class name="testscript.AdminTest"/>
-      <class name="testscript.NewsTest"/>
       <class name="testscript.LoginTest"/>
-    </classes>
-  </test>
+      </classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->
-
