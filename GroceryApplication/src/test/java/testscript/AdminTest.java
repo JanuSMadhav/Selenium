@@ -11,11 +11,14 @@ import org.testng.annotations.Test;
 import base.TestNGBase;
 import constants.Messages;
 import pages.AdminPage;
+import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 import utilities.FakerUtility;
 
 public class AdminTest extends TestNGBase{
+	public HomePage homepage;
+	public AdminPage adminpage;
 	
 	@Test (priority =1, description="Adding new Admin user", retryAnalyzer= retry.Retry.class)
 	
@@ -24,22 +27,25 @@ public class AdminTest extends TestNGBase{
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
 		//Login to Grocery Application
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUserName(usernamevalue);
-		loginpage.enterPassword(passwordvalue);
-		loginpage.signin();
+		loginpage.enterUserName(usernamevalue).enterPassword(passwordvalue);
+		//loginpage.signin();
+		homepage = loginpage.signin();
+		adminpage= homepage.clickAdminUser();
 		
 		//create random user name and password
 		FakerUtility faker = new FakerUtility();
 		String randomusername = faker.createRandomUserName();
 		String randompassword = faker.createRandomPassword();
+		//Chaining
+		adminpage.clickNewButton().addNewAdmin(randomusername).addPassword(randompassword).selectUsertype().saveUser();
 		
-		AdminPage adminpage = new AdminPage(driver);
+		/*AdminPage adminpage = new AdminPage(driver);
 		adminpage.clickAdminUser();
 		adminpage.clickNewButton();
 		adminpage.addNewAdmin(randomusername);
 		adminpage.addPassword(randompassword);
 		adminpage.selectUsertype();
-		adminpage.saveUser();
+		adminpage.saveUser();*/
 		
 		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);

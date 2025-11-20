@@ -34,7 +34,6 @@ public class PageUtility {
 	}
 	public void selectData(WebElement element) {
 		Select select = new Select(element);
-		select.selectByVisibleText(Constant.ADMINTYPE);
-		
+		select.selectByVisibleText(Constant.ADMINTYPE);		
 	}
 }

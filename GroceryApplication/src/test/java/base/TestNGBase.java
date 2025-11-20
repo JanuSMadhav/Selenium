@@ -28,9 +28,9 @@ public class TestNGBase {
 	public void initializeBrowser(String browser) throws Exception { //String browser parameter receives the value of <parameter> tag in crossbrowser xml
 		//driver = new ChromeDriver();//creating an instance of Chrome: initializing a chrome browser
 		//for disabling password leak protection
-		prop = new Properties();
-		f= new FileInputStream(Constant.CONFIGFILE);
-		prop.load(f);
+		prop = new Properties();//declaring properties class as prop 
+		f= new FileInputStream(Constant.CONFIGFILE);//declaration 
+		prop.load(f);//properties class has a built-in method called load. file object name is passed in load
 		if(browser.equalsIgnoreCase("chrome")) { //for chrome
 			ChromeOptions options = new ChromeOptions();
 			Map<String,Object> prefs=new HashMap<>();
@@ -44,7 +44,7 @@ public class TestNGBase {
 		else {
 			System.out.println("Invalid Browser");
 		}
-		driver.get(prop.getProperty("url"));
+		driver.get(prop.getProperty("url"));//get property is another method is used to get the values passed in properties method. here the value of url will be returned
 		driver.manage().window().maximize(); // to maximize browser
 		}
 	@AfterMethod
