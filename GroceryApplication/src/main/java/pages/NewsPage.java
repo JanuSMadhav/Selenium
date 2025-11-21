@@ -22,61 +22,64 @@ public class NewsPage {
 	}	
 		//Login to Grocery Application
 	@FindBy(xpath="//input[@name='username']") WebElement username;
-		public void enterUsername (String usernamevalue) {
+		public NewsPage enterUsername (String usernamevalue) {
 	//		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 			//username.sendKeys(usernamevalue);
 			pageutility.sendDataToElement(username, usernamevalue);
+			return this;
 		}
 	@FindBy(xpath="//input[@name='password']") WebElement password;
-		public void enterPassword(String passwordvalue) {
+		public NewsPage enterPassword(String passwordvalue) {
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
 		password.sendKeys(passwordvalue);
 		pageutility.sendDataToElement(password, passwordvalue);
+		return this;
 		}
 	@FindBy(xpath="//button[@type='submit']") WebElement signin;
-		public void signin() {
+		public NewsPage signin() {
 	//	WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
 		waitutility.waitUntilClickable(driver, signin);
 	//	signin.click();	
 		pageutility.clickOnElement(signin);
+		return this;
 		}
 		//Click Manage News
-	@FindBy(xpath="//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']") WebElement managenews;
-		public void clickManageNews() {
-//		WebElement managenews = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']"));
-		//managenews.click();
-		pageutility.clickOnElement(managenews);
-		}
+	
 		//Add news
 	@FindBy(xpath="//a[@href='https://groceryapp.uniqassosiates.com/admin/news/add']") WebElement addnews;
-		public void clickaddNews() {
+		public NewsPage clickaddNews() {
 	// WebElement addnews = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/news/add']"));
 		//addnews.click();
 		pageutility.clickOnElement(addnews);
+		return this;
 		}
 	@FindBy(xpath="//textarea[@id='news']") WebElement addnewstext;
-		public void addNews() {
+		public NewsPage addNews() {
 	//	WebElement addnewstext = driver.findElement(By.xpath("//textarea[@id='news']"));
 		//addnewstext.sendKeys("Explore news");
 		pageutility.sendDataToElement(addnewstext, "Explore news");
+		return this;
 		}
 	@FindBy(xpath="//button[@type='submit']") WebElement savenews;
-		public void saveNews() {
+		public NewsPage saveNews() {
 	//	WebElement savenews = driver.findElement(By.xpath("//button[@type='submit']"));
 		savenews.click();
 		pageutility.clickOnElement(savenews);
+		return this;
 		}
 	@FindBy(xpath="//input[@class='form-control']") WebElement typenews;
-		public void typeNews() {
+		public NewsPage typeNews() {
 		//	WebElement typenews = driver.findElement(By.xpath("//input[@class='form-control']"));
 			//typenews.sendKeys("today");	
 			pageutility.sendDataToElement(typenews, "today");
+			return this;
 		}
     @FindBy(xpath="//button[@class='btn btn-danger btn-fix']") WebElement searchnews;		
-		public void searchNews() {
+		public NewsPage searchNews() {
 	    //WebElement searchnews = driver.findElement(By.xpath("//button[@class='btn btn-danger btn-fix']"));
 			//searchnews.click();	
 			pageutility.clickOnElement(searchnews);
+			return this;
 		}
 	}
 

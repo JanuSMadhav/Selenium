@@ -16,7 +16,7 @@ import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginTest extends TestNGBase{
-	public HomePage home;//initialize object
+	public HomePage homepage;//initialize object home
 	//Actions are chained. If valid credentials are used, we move to the homepage
 	@Test (priority = 1, description = "verifying login to the webpage with valid username and valid password", retryAnalyzer= retry.Retry.class)//using retry class
 	//if retry mechanism is used then the test case would be flaky
@@ -27,7 +27,7 @@ public class LoginTest extends TestNGBase{
 		//loginpage.enterUserName(usernamevalue);
 		loginpage.enterUserName(usernamevalue).enterPassword(passwordvalue);//chaining of methods
 		//loginpage.enterPassword(passwordvalue);
-		home=loginpage.signin();//chaining of methods and classes for the first test case
+		homepage=loginpage.signin();//chaining of methods and classes for the first test case
 		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
@@ -48,6 +48,7 @@ public class LoginTest extends TestNGBase{
 		String passwordvalue = ExcelUtility.getStringData(2, 1, Constant.LOGINSHEET);
 		LoginPage loginpage = new LoginPage(driver);
 		loginpage.enterUserName(usernamevalue).enterPassword(passwordvalue).signin();
+		//signin is not assigned to home because we login using invalid credentials and stay in the login page itself
 		/*loginpage.enterUserName(usernamevalue);
 		loginpage.enterPassword(passwordvalue);
 		loginpage.signin();*/
@@ -69,9 +70,9 @@ public class LoginTest extends TestNGBase{
 		String usernamevalue = ExcelUtility.getStringData(3, 0, Constant.LOGINSHEET);
 		String passwordvalue = ExcelUtility.getStringData(3, 1, Constant.LOGINSHEET);
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUserName(usernamevalue);
-		loginpage.enterPassword(passwordvalue);
-		loginpage.signin();
+		loginpage.enterUserName(usernamevalue).enterPassword(passwordvalue).signin();
+		/*loginpage.enterPassword(passwordvalue);
+		loginpage.signin();*/
 		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
@@ -90,9 +91,9 @@ public class LoginTest extends TestNGBase{
 		String passwordvalue = ExcelUtility.getStringData(4, 1, Constant.LOGINSHEET);*/
 		//String passwordvalue = ExcelUtility.getStringData(4, 1, "LoginSheet");//old format before adding constants
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUserName(username);
-		loginpage.enterPassword(password);
-		loginpage.signin();
+		loginpage.enterUserName(username).enterPassword(password).signin();
+		/*loginpage.enterPassword(password);
+		loginpage.signin();*/
 		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
 		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));

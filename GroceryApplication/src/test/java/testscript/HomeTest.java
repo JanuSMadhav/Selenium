@@ -8,12 +8,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.TestNGBase;
+import pages.AdminPage;
 import pages.HomePage;
 import constants.Messages;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNGBase {
+	public HomePage homepage;
+	public AdminPage adminpage;
+	public LoginPage loginpage;
 	@Test (priority = 1, description = "Verify logout after logging in", retryAnalyzer= retry.Retry.class)
 	
 	public void verifyLogoutfunctionality() throws IOException  {
@@ -21,9 +25,9 @@ public class HomeTest extends TestNGBase {
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
 		//Login to Grocery Application
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUserName(usernamevalue);
-		loginpage.enterPassword(passwordvalue);
-		loginpage.signin();
+		loginpage.enterUserName(usernamevalue).enterPassword(passwordvalue);
+		/*loginpage.enterPassword(passwordvalue);
+		loginpage.signin();*/
 		
 		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
@@ -31,10 +35,12 @@ public class HomeTest extends TestNGBase {
 		password.sendKeys(passwordvalue);
 		WebElement signin = driver.findElement(By.xpath("//button[@type='submit']"));
 		signin.click();	*/
-		HomePage homepage = new HomePage(driver);
+		/*HomePage homepage = new HomePage(driver);
 		homepage.adminButton();
-		homepage.logout();
-		
+		homepage.logout();*/
+		homepage = loginpage.signin();
+		loginpage=adminpage.adminButton().logout();
+			
 		//Click Admin dropdown for logging out
 		/*WebElement admin = driver.findElement(By.xpath("//a[@data-toggle='dropdown']"));
 		admin.click();

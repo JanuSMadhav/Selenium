@@ -20,17 +20,19 @@ public class HomePage {
 	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 }
 	@FindBy(xpath="//a[@data-toggle='dropdown']") WebElement admin;
-	public void adminButton() {
+	public HomePage adminButton() {
 		//WebElement admin = driver.findElement(By.xpath("//a[@data-toggle='dropdown']"));
 		//admin.click();
 		pageutility.clickOnElement(admin);
+		return this;
 	}
 	@FindBy(xpath="i[@class='ace-icon fa fa-power-off']") WebElement logout;
-public void logout() {
+public HomePage logout() {
 	//WebElement logout = driver.findElement(By.xpath("//i[@class='ace-icon fa fa-power-off']"));
 	waitutility.waitUntilClickable(driver, logout);
 	//logout.click();	
 	pageutility.clickOnElement(logout);
+	return this;
 }
 //Click Admin User. As the admin comes in Home page we change the code from Admin page to Home page
 	@FindBy(xpath="//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin' and @class='small-box-footer']") WebElement adminuser;
@@ -40,6 +42,13 @@ public void logout() {
 		//adminuser.click();
 		pageutility.clickOnElement(adminuser);
 		return new AdminPage(driver);
+	}
+	@FindBy(xpath="//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']") WebElement managenews;
+	public NewsPage clickManageNews() {
+//	WebElement managenews = driver.findElement(By.xpath("//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news' and @class='small-box-footer']"));
+	//managenews.click();
+	pageutility.clickOnElement(managenews);
+	return new NewsPage(driver);
 	}
 	
 }

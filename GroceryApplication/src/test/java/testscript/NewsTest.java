@@ -9,23 +9,31 @@ import org.testng.annotations.Test;
 
 import base.TestNGBase;
 import constants.Messages;
+import pages.AdminPage;
+import pages.HomePage;
+import pages.LoginPage;
 import pages.NewsPage;
 import utilities.ExcelUtility;
 
 public class NewsTest extends TestNGBase {
+	public LoginPage loginpage;
+	public HomePage homepage;
+	public NewsPage newspage;
+	
 	@Test (priority=1, description="Verify adding News", retryAnalyzer= retry.Retry.class, groups = {"smoke"})
 	public void addNewsItem() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginSheet");//reading data from excel file: data driven approach
 		String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginSheet");
 		//Login to Grocery Application
 		NewsPage newspage =new NewsPage(driver);
-		newspage.enterUsername(usernamevalue);
-		newspage.enterPassword(passwordvalue);
-		newspage.signin();
-		newspage.clickManageNews();
-		newspage.clickaddNews();
+		loginpage.enterUserName(usernamevalue).enterPassword(passwordvalue);
+		/*newspage.enterUsername(usernamevalue);
+		newspage.enterPassword(passwordvalue);*/
+		homepage=loginpage.signin();
+		newspage.clickManageNews().clickaddNews().addNews().saveNews();
+	/*	newspage.clickaddNews();
 		newspage.addNews();
-		newspage.saveNews();
+		newspage.saveNews();*/
 		
 		/*WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
 		username.sendKeys(usernamevalue);
